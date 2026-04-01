@@ -7,8 +7,10 @@ Ein [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol/spec)
 Dieses Projekt stellt eine Schnittstelle bereit, über die KI-Agenten und Anwendungen auf eine umfangreiche Datenbank deutscher Rechtsprechung zugreifen können. Es besteht aus drei Hauptkomponenten:
 
 1.  **MCP Server**: Der Kern des Projekts. Ein FastMCP-Server, der Tools zur Suche und zum Abruf von Volltexten bereitstellt.
-2.  **Data Preprocessing**: Eine Pipeline, um Urteile von "Rechtsprechung im Internet" herunterzuladen, zu bereinigen und in ein durchsuchbares Format zu konvertieren.
-3.  **Beispiel-Agent**: Ein Google ADK Agent, der demonstriert, wie man den MCP Server nutzen kann, um juristische Fragestellungen zu beantworten.
+2.  **Claude Desktop Extension**: Eine `.mcpb`-Datei für One-Click-Installation in Claude Desktop (ideal für Nicht-Entwickler).
+3.  **Claude Code Integration**: Skill + MCP-Konfiguration für `/rechtsprechung`-Befehl in Claude Code.
+4.  **Data Preprocessing**: Eine Pipeline, um Urteile von "Rechtsprechung im Internet" herunterzuladen, zu bereinigen und in ein durchsuchbares Format zu konvertieren.
+5.  **Beispiel-Agent**: Ein Google ADK Agent, der demonstriert, wie man den MCP Server nutzen kann, um juristische Fragestellungen zu beantworten.
 
 ## 1. MCP Server
 
@@ -55,6 +57,49 @@ SEARCH_BACKEND=opensearch docker-compose up --build
 ```
 
 Der Server ist anschließend unter `http://localhost:8002/mcp` erreichbar. Die Datenbank wird beim ersten Start automatisch initialisiert.
+
+#### Option C: Claude Desktop Extension (für Nicht-Entwickler)
+
+Die einfachste Methode — keine Programmierkenntnisse erforderlich:
+
+1. Lade `deutsche-rechtsprechung.mcpb` aus den [Releases](https://github.com/MansKos/deutsche-rechtsprechung-mcp/releases) herunter
+2. Doppelklicke die Datei — Claude Desktop installiert alles automatisch
+3. Die Datenbank wird beim ersten Gespräch einmalig heruntergeladen (~2 GB)
+
+Danach einfach Claude fragen: *"Suche nach BGH-Urteilen zu § 823 BGB"*
+
+Siehe `desktop-extension/README.md` für Build-Anweisungen.
+
+#### Option D: Claude Code / Cowork (mit Skill)
+
+Für Nutzer mit Claude Code:
+
+```bash
+git clone https://github.com/MansKos/deutsche-rechtsprechung-mcp.git
+cd deutsche-rechtsprechung-mcp
+# Claude Code öffnen und den Skill nutzen:
+# /rechtsprechung Haftung bei Autounfall
+```
+
+Der MCP-Server wird automatisch über `.claude/mcp.json` konfiguriert.
+Der `/rechtsprechung`-Skill führt eine juristische Recherche durch und fasst die Ergebnisse zusammen.
+
+#### Option E: uvx (für Claude Desktop manuell)
+
+In der Claude-Desktop-Konfiguration (`claude_desktop_config.json`) hinzufügen:
+
+```json
+{
+  "mcpServers": {
+    "deutsche-rechtsprechung": {
+      "command": "uvx",
+      "args": ["deutsche-rechtsprechung-mcp"]
+    }
+  }
+}
+```
+
+Voraussetzung: [uv](https://docs.astral.sh/uv/) installiert (`curl -LsSf https://astral.sh/uv/install.sh | sh`).
 
 ## 2. Data Preprocessing
 

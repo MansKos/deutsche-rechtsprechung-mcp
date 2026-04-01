@@ -1,0 +1,44 @@
+{
+  "manifest_version": "0.4",
+  "name": "deutsche-rechtsprechung",
+  "display_name": "Deutsche Rechtsprechung",
+  "version": "0.1.0",
+  "description": "Durchsuchbare Urteile deutscher Bundesgerichte (BVerfG, BGH, BVerwG, BFH, BAG, BSG, BPatG ab 2010). Suche nach Aktenzeichen, Normen oder Freitext.",
+  "author": {
+    "name": "MansKos"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "uv",
+    "entry_point": "src/server.py"
+  },
+  "tools": [
+    {
+      "name": "search_decisions",
+      "description": "Durchsucht deutsche Gerichtsentscheidungen nach Text, Aktenzeichen oder Normen"
+    },
+    {
+      "name": "get_decision_by_doknr",
+      "description": "Ruft den Volltext einer Gerichtsentscheidung anhand der Dokumentennummer ab"
+    }
+  ],
+  "user_config": {
+    "db_url": {
+      "type": "string",
+      "description": "URL zum Download der vorgebauten Datenbank (optional, nur bei eigener Datenbank ändern)",
+      "required": false,
+      "default": "https://github.com/MansKos/deutsche-rechtsprechung-mcp/releases/download/v0.1.0/decisions.db.zip"
+    }
+  },
+  "env": {
+    "RECHTSPRECHUNG_DB_URL": "${user_config.db_url}"
+  },
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  },
+  "keywords": ["rechtsprechung", "german-law", "court-decisions", "jurisprudence", "recht"],
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "deutsche-rechtsprechung": {
+      "command": "uvx",
+      "args": ["deutsche-rechtsprechung-mcp"]
+    }
+  }
+}

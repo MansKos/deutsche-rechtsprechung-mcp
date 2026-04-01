@@ -1,0 +1,1 @@
+"""Deutsche Rechtsprechung MCP Server."""

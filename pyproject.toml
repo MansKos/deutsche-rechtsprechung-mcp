@@ -1,0 +1,26 @@
+[project]
+name = "deutsche-rechtsprechung-mcp"
+version = "0.1.0"
+description = "MCP Server für deutsche Rechtsprechung — durchsuchbare Urteile des BVerfG, BGH, BVerwG, BFH, BAG, BSG und BPatG"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "uvicorn",
+    "fastapi",
+]
+
+[project.optional-dependencies]
+opensearch = ["opensearch-py"]
+
+[project.scripts]
+deutsche-rechtsprechung-mcp = "deutsche_rechtsprechung_mcp.server:main"
+deutsche-rechtsprechung-ingest = "deutsche_rechtsprechung_mcp.ingest_sqlite:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["deutsche_rechtsprechung_mcp"]
