@@ -43,6 +43,7 @@ services:
     build: .
     container_name: mcp-server
     environment:
+      - SEARCH_BACKEND=opensearch
       - OPENSEARCH_HOST=opensearch-node1
       - OPENSEARCH_PORT=9200
       - OPENSEARCH_USER=admin

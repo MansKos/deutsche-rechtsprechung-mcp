@@ -22,17 +22,39 @@ Der Server läuft in einem Docker-Container und nutzt OpenSearch als Backend fü
 ### Technologie
 
 *   **Python**: Implementierung des Servers mit `mcp.server.fastmcp`.
-*   **OpenSearch**: Speicherung und Indizierung der Urteile.
-*   **Docker Compose**: Orchestrierung von Server und Datenbank.
+*   **Such-Backend (wählbar)**:
+    *   **SQLite FTS5** (Standard): Leichtgewichtig, keine externen Dienste nötig. Nur Python + SQLite.
+    *   **OpenSearch**: Mächtiger, aber benötigt einen laufenden OpenSearch-Container (~2–4 GB RAM).
+*   **Docker Compose**: Optionale Orchestrierung.
 
 ### Starten des Servers
 
+#### Option A: SQLite (leichtgewichtig, empfohlen zum Einstieg)
+
+**Mit Docker:**
 ```bash
 cd mcp
-docker-compose up --build
+docker-compose -f docker-compose.sqlite.yml up --build
 ```
 
-Der Server ist anschließend unter `http://localhost:8002/mcp` erreichbar. Die Datenbank wird beim ersten Start automatisch initialisiert (siehe `src/ingest.py`).
+**Ohne Docker (lokal):**
+```bash
+cd mcp
+pip install -r requirements.txt
+# 1. Daten importieren (nur beim ersten Mal)
+python src/ingest_sqlite.py
+# 2. Server starten
+python src/server.py
+```
+
+#### Option B: OpenSearch (Original)
+
+```bash
+cd mcp
+SEARCH_BACKEND=opensearch docker-compose up --build
+```
+
+Der Server ist anschließend unter `http://localhost:8002/mcp` erreichbar. Die Datenbank wird beim ersten Start automatisch initialisiert.
 
 ## 2. Data Preprocessing
 
@@ -59,8 +81,8 @@ Siehe `google-adk-agent/agent/README.md` für Details zur Einrichtung.
 
 ## Voraussetzung
 
-*   Docker & Docker Compose
-*   Python 3.10+ (für lokale Entwicklung/Preprocessing)
+*   Python 3.10+ (SQLite ist in der Standardbibliothek enthalten)
+*   Docker & Docker Compose (nur für OpenSearch-Backend oder Docker-Deployment)
 *   Zugriff auf Gemini API (für den Agenten)
 
 ## Lizenz

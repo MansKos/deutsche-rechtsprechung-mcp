@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mcp-server:
+    build: .
+    container_name: mcp-server
+    environment:
+      - SEARCH_BACKEND=sqlite
+      - MARKDOWN_DIR=/markdown_data
+      - SQLITE_DB_PATH=/data/decisions.db
+    volumes:
+      - ./markdown:/markdown_data
+      - sqlite-data:/data
+    ports:
+      - 8002:8002
+
+volumes:
+  sqlite-data:
