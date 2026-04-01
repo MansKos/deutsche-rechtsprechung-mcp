@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "deutsche-rechtsprechung": {
+      "command": "python3",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/server.py"],
+      "env": {
+        "RECHTSPRECHUNG_DATA_DIR": "${CLAUDE_PLUGIN_DATA}",
+        "RECHTSPRECHUNG_DB_URL": "${user_config.db_download_url}"
+      }
+    }
+  }
+}

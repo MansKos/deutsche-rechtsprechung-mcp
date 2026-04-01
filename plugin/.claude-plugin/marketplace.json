@@ -1,0 +1,24 @@
+{
+  "name": "deutsche-rechtsprechung-marketplace",
+  "owner": {
+    "name": "MansKos",
+    "email": ""
+  },
+  "metadata": {
+    "description": "Plugin-Marketplace für deutsche Rechtsprechung",
+    "version": "1.0.0",
+    "pluginRoot": ".."
+  },
+  "plugins": [
+    {
+      "name": "deutsche-rechtsprechung",
+      "source": "..",
+      "description": "Durchsuchbare Datenbank deutscher Gerichtsentscheidungen (BVerfG, BGH, BVerwG, BFH, BAG, BSG, BPatG ab 2010)",
+      "version": "0.1.0",
+      "author": {
+        "name": "MansKos"
+      },
+      "keywords": ["rechtsprechung", "german-law", "court-decisions", "jura", "urteile"]
+    }
+  ]
+}

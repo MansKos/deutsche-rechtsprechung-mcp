@@ -1,0 +1,21 @@
+{
+  "name": "deutsche-rechtsprechung",
+  "version": "0.1.0",
+  "description": "Durchsuchbare Datenbank deutscher Gerichtsentscheidungen (BVerfG, BGH, BVerwG, BFH, BAG, BSG, BPatG ab 2010). Suche nach Aktenzeichen, Normen oder Freitext direkt in Claude.",
+  "author": {
+    "name": "MansKos",
+    "url": "https://github.com/MansKos"
+  },
+  "repository": "https://github.com/MansKos/deutsche-rechtsprechung-mcp",
+  "license": "MIT",
+  "keywords": ["rechtsprechung", "german-law", "court-decisions", "jura", "urteile", "recht"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "hooks": "./hooks/hooks.json",
+  "userConfig": {
+    "db_download_url": {
+      "description": "URL zum Download der vorgebauten Datenbank (nur ändern, wenn Sie eine eigene Datenbank verwenden)",
+      "sensitive": false
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pip install -q mcp>=1.0.0 2>/dev/null || pip3 install -q mcp>=1.0.0 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

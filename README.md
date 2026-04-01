@@ -70,9 +70,28 @@ Danach einfach Claude fragen: *"Suche nach BGH-Urteilen zu § 823 BGB"*
 
 Siehe `desktop-extension/README.md` für Build-Anweisungen.
 
-#### Option D: Claude Code / Cowork (mit Skill)
+#### Option D: Claude Code Plugin (empfohlen für Claude Code / Cowork)
 
-Für Nutzer mit Claude Code:
+Kein Terminal nötig — direkt in Claude Code eingeben:
+
+```
+/plugin marketplace add MansKos/deutsche-rechtsprechung-mcp
+/plugin install deutsche-rechtsprechung
+```
+
+Dann einfach nutzen:
+```
+/deutsche-rechtsprechung:rechtsprechung Haftung bei Autounfall
+```
+
+Das Plugin installiert den MCP-Server und den `/rechtsprechung`-Skill automatisch.
+Die Datenbank wird beim ersten Aufruf heruntergeladen.
+
+Siehe `plugin/README.md` für Details.
+
+#### Option E: Claude Code (Repo klonen)
+
+Alternativ für Entwickler — Repo klonen und direkt loslegen:
 
 ```bash
 git clone https://github.com/MansKos/deutsche-rechtsprechung-mcp.git
@@ -82,7 +101,6 @@ cd deutsche-rechtsprechung-mcp
 ```
 
 Der MCP-Server wird automatisch über `.claude/mcp.json` konfiguriert.
-Der `/rechtsprechung`-Skill führt eine juristische Recherche durch und fasst die Ergebnisse zusammen.
 
 #### Option E: uvx (für Claude Desktop manuell)
 
