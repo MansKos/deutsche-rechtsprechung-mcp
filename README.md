@@ -119,6 +119,23 @@ In der Claude-Desktop-Konfiguration (`claude_desktop_config.json`) hinzufügen:
 
 Voraussetzung: [uv](https://docs.astral.sh/uv/) installiert (`curl -LsSf https://astral.sh/uv/install.sh | sh`).
 
+#### Option G: Gehosteter Server (für Cowork & Nicht-Techniker)
+
+Für Nutzer die **nur Claude Desktop oder Cowork** haben und nichts installieren können:
+Den Server einmal deployen (z.B. auf fly.io für ~3-5 USD/Monat), dann brauchen Nutzer nur eine URL.
+
+```json
+{
+  "mcpServers": {
+    "deutsche-rechtsprechung": {
+      "url": "https://deine-url.fly.dev/mcp"
+    }
+  }
+}
+```
+
+Detaillierte Deploy-Anleitung in `deploy/README.md`.
+
 ## 2. Data Preprocessing
 
 Bevor der Server nützlich ist, müssen Daten ingestiert werden. Die Skripte im Ordner `prepare_data/` kümmern sich um die Beschaffung und Aufbereitung.
